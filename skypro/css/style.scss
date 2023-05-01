@@ -27,6 +27,9 @@ ul li {
 
 
 
+//-------------------------------//
+
+// ========== fonts ========
 @font-face {
     font-family: 'StratosSkyeng';
     src: local('StratosSkyeng'), local('StratosSkyeng'),
@@ -37,6 +40,7 @@ ul li {
     font-style: normal;
 }
 
+//--------------------------
 
 html,
 body {
@@ -64,6 +68,7 @@ body {
 
 }
 
+// ========== hover ========
 ._btn-text:hover {
     border-color: #D9B6FF;
     color: #D9B6FF;
@@ -76,6 +81,7 @@ body {
     cursor: pointer;
 }
 
+// ========== activ ========
 
 ._btn-text:active {
     border-color: #AD61FF;
@@ -97,6 +103,9 @@ body {
     cursor: pointer;
 }
 
+
+
+// =================== main ====================//
 .main {
     flex: 1 1 auto;
     display: flex;
@@ -376,6 +385,8 @@ body {
         stroke: #4E4E4E;
     }
 
+    //&__title-text {}
+
     &__title-link {
         font-style: normal;
         font-weight: 400;
@@ -419,6 +430,8 @@ body {
         color: #696969;
     }
 
+    //&__time {}
+
     &__time-svg {
         width: 14px;
         height: 12px;
@@ -437,6 +450,9 @@ body {
 
     }
 }
+
+
+
 
 .sidebar {
 
@@ -497,6 +513,8 @@ body {
         height: auto;
     }
 }
+
+// =================== bar-player ====================//
 
 .bar {
     position: absolute;
