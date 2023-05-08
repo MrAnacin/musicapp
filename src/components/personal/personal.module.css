@@ -1,0 +1,23 @@
+.personal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 25px 0 15px 0;
+}
+
+.personal_name {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #FFFFFF;
+        margin-right: 16px;
+    }
+
+.avatar {
+    width: 43px;
+    height: 43px;
+    background-color: #313131;
+    border-radius: 50%;
+}

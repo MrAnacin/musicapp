@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    font-family: 'StratosSkyeng', sans-serif;
+    cursor: pointer;
+}
+
+button,
+._btn {
+    cursor: pointer;
+}
+
+ul li {
+    list-style: none;
+}
+
+@font-face {
+    font-family: 'StratosSkyeng';
+    src: local('StratosSkyeng'), local('StratosSkyeng'),
+        url('./fonts/Stratos-Regular.woff') format('woff'),
+        url('./fonts/Stratos-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+#root {
+    background-color:#181818;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'StratosSkyeng', sans-serif;
+  color: #FFFFFF;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    background-color: #383838;
+
+}
+
+.container {
+    max-width: 1920px;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    background-color: #181818;
+
+}
+
+.main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.nav {
+    width: 244px;
+    background-color: #181818;
+    padding: 20px 0 20px 36px;
+}
+
+ .centerblock {
+        width: auto;
+        flex-grow: 3;
+        padding: 20px 40px 20px 111px;
+    }
+
+  .sidebar {
+        max-width: 418px;
+        padding: 20px 90px 20px 78px;
+    }
+
+.main_nav {
+    width: 244px;
+    background-color: #181818;
+    padding: 20px 0 20px 36px;
+    height: 70px;
+    position: fixed;
+    z-index: 50;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+}
+
+._btn-text:hover {
+    border-color: #D9B6FF;
+    color: #D9B6FF;
+    cursor: pointer;
+}
+
+._btn-icon:hover svg {
+    fill: transparent;
+    stroke: #ACACAC;
+    cursor: pointer;
+}
+
+._btn-text:active {
+    border-color: #AD61FF;
+    color: #AD61FF;
+    cursor: pointer;
+}
+
+._btn-icon:active svg {
+    fill: transparent;
+    stroke: #FFFFFF;
+    cursor: pointer;
+
+}
+
+._btn-icon:active .track-play__like-svg,
+._btn-icon:active .track-play__dislike-svg {
+    fill: #696969;
+    stroke: #FFFFFF;
+    cursor: pointer;
+}
+
+.logo {
+    background-image: url("../img/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 10px; 
+    width: 113.33px;
+    height: 43px;
+    padding: 13px 0 13px 0;
+    background-color: transparent;
+    margin-bottom: 20px;
+}
+
+.burger_btn {
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+
+.burger_btn:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    width: 20px;
+    background-color: whitesmoke;
+    height: 1px; 
+}
+
+.burger_btn span {
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 20px;
+    background-color: whitesmoke;
+    height: 1px;
+}
+
+.burger_btn:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    top: 15px;
+    width: 20px;
+    background-color: whitesmoke;
+    height: 1px;
+}
