@@ -1,0 +1,104 @@
+/* @import '../../variables.css'; */
+
+ul li {
+  list-style: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+
+  background-color: var(--scroll-back);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--a-color);
+}
+.filter__button {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid var(--a-color);
+  border-radius: 60px;
+  padding: 6px 20px;
+
+  position: relative;
+  display: inline-block;
+}
+
+.dropdwn_active {
+  border-color: var(--active-color);
+  color: var(--active-color);
+}
+
+.filter__button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.filter__dropdown_content {
+  position: absolute;
+  background-color: var(--barPlayer-background);
+
+  min-width: 248px;
+  margin-left: 0px;
+  margin-top: 6px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 16px 0px var(--dropdwn-shadow);
+
+  z-index: 1;
+}
+
+.srcollabale_menu {
+  overflow-y: scroll;
+  height: 357px;
+  width: 248px;
+  background-color: var(--barPlayer-background);
+  border: 30px solid var(--barPlayer-background);
+  border-radius: 12px;
+}
+
+.filter__dropdown_content .filter__dropdown_item {
+  color: var(--a-color);
+  font-size: 20px;
+  padding: 10px 0px;
+  margin: 0;
+  text-decoration: none;
+  margin-bottom: 14px;
+  display: block;
+}
+.filter__dropdown_content_light .filter__dropdown_item_light {
+  color: #383838;
+  font-size: 20px;
+  padding: 10px 0px;
+  margin: 0;
+  text-decoration: none;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.filter__dropdown_content_light .filter__dropdown_item_light:hover {
+  color: #ad61ff;
+  text-decoration: underline;
+}
+.filter__dropdown_content .filter__dropdown_item:hover {
+  color: #ad61ff;
+  text-decoration: underline;
+}
+
+.btn_text:hover {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+.btn_text {
+  color: var(--a-color);
+}
+.btn_text_light:hover {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+.btn_text_light {
+  color: #383838;
+}
+
