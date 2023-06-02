@@ -6,7 +6,7 @@ import CenterblockContent from './components/centerblock/centerblockContent';
 import Personal from './components/personal/personal';
 import SidebarBlock from './components/sidebar/sidebarBlock';
 import Menu from './components/burgerMenu/menu';
-// import BarPlayer from './components/barPlayer/barPlayer';
+import BarPlayer from './components/barPlayer/barPlayer';
 
 
 function App() {
