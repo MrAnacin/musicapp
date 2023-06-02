@@ -12,7 +12,6 @@ export const musicApi = createApi({
     }), 
 
     getSelectMusic: builder.query({
-      // вместо 2 доблжен быть динамический id
       query: () => 'catalog/selection/2'      
     }),
 

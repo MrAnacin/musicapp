@@ -11,7 +11,7 @@ function BarPlayer() {
     const [position, setPosition] = useState();
 
     const ref = useRef(null);
-    const src = '/Bobby_Marleni_-_Dropin.mp3';
+    const src = '/Ayo & Teo - Fly N Ghetto.mp3';
     const clickRef = useRef();
 
     const icon = isPlaying ? "pause" : "play"
