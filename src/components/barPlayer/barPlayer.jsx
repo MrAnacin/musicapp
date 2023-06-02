@@ -1,151 +1,144 @@
-import Sprite from '../../assets/icons/sprite.svg'
-import { PropsWithChildren, useState, useEffect, useRef } from 'react'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import styles from '../bar/barPlayer.module.css'
-import { useThemeContext } from '../../contexts/theme'
+import React from 'react';
+import s from './barPlayer.module.css';
+import sprite from '../../img/icon/sprite.svg'
+import SkeletonLoading from '../skeleton/skeletonLoading';
+import { useState, useRef, useEffect } from 'react';
 
-export default function BarPlayer({ audioRef }) {
-  console.log(audioRef)
-  const [loadingPage, setLoadingPage] = useState(true)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const { currentTheme } = useThemeContext()
-  // const audioRef = useRef(null)
 
-  const playStart = () => {
-    audioRef.current.play()
-    console.log('play')
-    setIsPlaying(true)
-  }
+function BarPlayer() {
 
-  const playStop = () => {
-    audioRef.current.pause()
-    console.log('stop')
-    setIsPlaying(false)
-  }
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [position, setPosition] = useState();
 
-  const playBtn = (
-    <div className={`${styles.player__btn_play} ${styles.btn}`}>
-      <svg
-        className={styles.player__btn_play_svg}
-        alt="play"
-        onClick={playStart}
-      >
-        <use xlinkHref={`${Sprite}#icon-play`}></use>
-      </svg>
-    </div>
-  )
-  const stopBtn = (
-    <div className={`${styles.player__btn_stop} ${styles.btn}`}>
-      <svg
-        className={styles.player__btn_stop_svg}
-        alt="stop"
-        onClick={playStop}
-        // width="15"
-        // height="19"
-        // viewBox="0 0 15 19"
-        // fill="none"
-        // xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* <rect width="5" height="19" fill="#D9D9D9" />
-        <rect x="10" width="5" height="19" fill="#D9D9D9" /> */}
-        <use xlinkHref={`${Sprite}#icon-pause`}></use>
-      </svg>
-    </div>
-  )
+    const ref = useRef(null);
+    const src = '/Bobby_Marleni_-_Dropin.mp3';
+    const clickRef = useRef();
 
-  const togglePlay = isPlaying ? stopBtn : playBtn
+    const icon = isPlaying ? "pause" : "play"
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadingPage(false)
-    }, 5000)
-    return () => clearTimeout(timer)
-  }, [])
+    useEffect(() => {
+        if (isPlaying) {
+            ref.current.play();
+        } else {
+            ref.current.pause();
+        }
+    }, [isPlaying]);
+
+    const onPlaying = () => {
+        const duration = ref.current.duration;
+        const ct = ref.current.currentTime;
+        setPosition({
+            ...position,
+            progress: (ct / duration) * 100,
+            length: duration,
+        });
+    };
+
+    const checkWidth = (e) => {
+        let width = clickRef.current.clientWidth;
+        const offset = e.nativeEvent.offsetX;
+        const divprogress = (offset / width) * 100;
+        ref.current.currentTime = (divprogress / 100) * position.length;
+    };
+   
   return (
-    <div className={styles.bar__player}>
-      <div className={styles.player__controls}>
-        <div className={styles.player__btn_prev}>
-          <svg className={styles.player__btn_prev_svg} alt="prev">
-            <use xlinkHref={`${Sprite}#icon-prev`}></use>
-          </svg>
+    <div className={s.bar}>
+        <div>
+            <audio ref={ref} src={src} onTimeUpdate={onPlaying} />                
         </div>
-        {togglePlay}
-        <div className={styles.player__btn_next}>
-          <svg className={styles.player__btn_next_svg} alt="next">
-            <use xlinkHref={`${Sprite}#icon-next`}></use>
-          </svg>
-        </div>
-        <div className={`${styles.player__btn_repeat} ${styles.btn_icon}`}>
-          <svg className={styles.player__btn_shuffle_svg} alt="repeat">
-            <use xlinkHref={`${Sprite}#icon-repeat`}></use>
-          </svg>
-        </div>
-        <div className={`${styles.player__btn_shuffle} ${styles.btn_icon}`}>
-          <svg className={styles.player__btn_shuffle_svg} alt="shuffle">
-            <use xlinkHref={`${Sprite}#icon-shuffle`}></use>
-          </svg>
-        </div>
-      </div>
+         <div className={s.bar__content}> 
+            <div className={s.barPlayerProgress}>
+                            <div className={s.navigationWrapper} onClick={checkWidth} ref={clickRef}>
+                                
+                            <div className={s.seekBar} style={{ 
+                                width: position ? `${position.progress}%` : '', 
+                            }}></div>
+                            </div>
+                    </div>
+                    <div className={s.bar__player_block}>
+                        <div className={s.bar__player}>
+                            <div className={s.player__controls}>
+                                <div className={s.player__btn_prev}>
+                                    <svg className={s.player__btn_prev_svg} alt="prev" >
+                                        <use xlinkHref={`${sprite}#icon-prev`}></use>
+                                    </svg>
+                                </div>
+                                <div className={s.player__btn_play}>
+                                <svg className={s.player__btn_play_svg} alt="play" onClick={() => setIsPlaying(!isPlaying)}> 
+                                        <use xlinkHref={`${sprite}#icon-${icon}`}></use>
+                                    </svg>
+                                </div>
+                                <div className={s.player__btn_next}>
+                                    <svg className={s.player__btn_next_svg} alt="next">
+                                        <use xlinkHref={`${sprite}#icon-next`}></use>
+                                    </svg>
+                                </div>
+                                <div className={s.player__btn_repeat}>
+                                    <svg className={s.player__btn_repeat_svg} alt="repeat">
+                                        <use xlinkHref={`${sprite}#icon-repeat`}></use>
+                                    </svg>
+                                </div>
+                                <div className={s.player__btn_shuffle}>
+                                    <svg className={s.player__btn_shuffle_svg} alt="shuffle">
+                                        <use xlinkHref={`${sprite}#icon-shuffle`}></use>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                        <div className={s.player__track_play}>
+                                <div className={s.track_play__contain}>
+                                    <div className={s.track_play__image}>
+                                    <SkeletonLoading width={51} height={51}>
+                                        <svg className={s.track_play__svg} alt="music">
+                                            <use xlinkHref={`${sprite}#icon-note`}></use>
+                                        </svg>
+                                    </SkeletonLoading>
+                                    </div>
+                                    <div className={s.track_play__author}>
+                                    <SkeletonLoading width={50} height={15}>
+                                        <a className={s.track_play__author_link} href="http://">Ты та...</a>
+                                    </SkeletonLoading>
+                                    </div>
+                                    <div className={s.track_play__album}>
+                                    <SkeletonLoading width={50} height={15}>
+                                        <a className={s.track_play__album_link} href="http://">Баста</a>
+                                    </SkeletonLoading>
+                                    </div>
+                                </div>
 
-      <div className={styles.player__track_play}>
-        <div className={styles.track_play__contain}>
-          <div className={styles.track_play__image} style={{background: currentTheme['--page-background']}}>
-            <SkeletonTheme baseColor="#313131" highlightColor="#313131">
-              {loadingPage ? (
-                <Skeleton width={51} height={51} borderRadius={0} count={1} />
-              ) : (
-                <svg className={styles.track_play__svg} alt="music">
-                  <use xlinkHref={`${Sprite}#icon-note`}></use>
-                </svg>
-              )}
-            </SkeletonTheme>
-          </div>
-          <SkeletonTheme baseColor="#313131" highlightColor="#313131">
-            {loadingPage ? (
-              <Skeleton width={59} height={15} borderRadius={0} count={1} />
-            ) : (
-              <div className={styles.track_play__author}>
-                <a
-                  className={styles.track_play__author_link}
-                  style={{ color: currentTheme['--a-color'] }}
-                  href="http://"
-                >
-                  Ты та...
-                </a>
-              </div>
-            )}
-          </SkeletonTheme>
-          <SkeletonTheme baseColor="#313131" highlightColor="#313131">
-            {loadingPage ? (
-              <Skeleton width={59} height={15} borderRadius={0} count={1} />
-            ) : (
-              <div className={styles.track_play__album}>
-                <a
-                  className={styles.track_play__album_link}
-                  style={{ color: currentTheme['--a-color'] }}
-                  href="http://"
-                >
-                  Баста
-                </a>
-              </div>
-            )}
-          </SkeletonTheme>
-        </div>
-
-        <div className={styles.track_play__like_dis}>
-          <div className={`${styles.track_play__like} ${styles.btn_icon}`}>
-            <svg className={styles.track_play__like_svg} alt="like">
-              <use xlinkHref={`${Sprite}#icon-like`}></use>
-            </svg>
-          </div>
-          <div className={`${styles.track_play__dislike} ${styles.btn_icon}`}>
-            <svg className={styles.track_play__dislike_svg} alt="dislike">
-              <use xlinkHref={`${Sprite}#icon-dislike`}></use>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+                            <div className={s.track_play__like_dis}>
+                                    <div className={s.track_play__like} >
+                                        <svg className={s.track_play__like_svg} alt="like">
+                                            <use xlinkHref={`${sprite}#icon-like`}></use>
+                                        </svg>
+                                    </div>
+                                    <div className={s.track_play__dislike} >
+                                        <svg className={s.track_play__dislike_svg} alt="dislike">
+                                            <use xlinkHref={`${sprite}#icon-dislike`}></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={s.bar__volume_block} >
+                           <div className={s.volume__content}>
+                                <div className={s.volume__image}>
+                                    <svg className={s.volume__svg} alt="volume">
+                                        <use xlinkHref={`${sprite}#icon-volume`}></use>
+                                    </svg>
+                                </div>
+                                <div className={s.volume__progress}>
+                                    <input className={s.volume__progress_line} 
+                                    type="range" 
+                                    name="range"/>
+                                </div>
+                                
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    )
 }
+
+export default  BarPlayer;

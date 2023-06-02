@@ -1,0 +1,61 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'StratosSkyeng', sans-serif;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+h1 {
+    font-size: 160px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.text_box {
+    font-size: 18px;
+    color: #4E4E4E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; 
+    margin-bottom: 35px;
+}
+
+.smile_crying {
+    background-image: url(../../img/smile_crying.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 55px;
+    height: 55px;
+    background-color: transparent;
+}
+
+button,
+._btn {
+    cursor: pointer;
+    width: 278px;
+    height: 52px;
+    border-radius: 10px;
+    border: 0;
+    
+}
+
+.btn_back {
+    color: #fff;
+    background: #580EA2;
+    font-size: 18px
+}

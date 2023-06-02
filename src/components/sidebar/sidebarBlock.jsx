@@ -1,24 +1,47 @@
-import Personal from './personal'
-import SidebarItem from './sidebarItem'
-import playlist01 from '../../assets/images/playlist01.png'
-import playlist02 from '../../assets/images/playlist02.png'
-import playlist03 from '../../assets/images/playlist03.png'
-import styles from '../sidebar/sidebar.module.css'
+import React from 'react';
+import s from './sidebarBlock.module.css';
+import playlist01 from '../../img/playlist01.png'
+import playlist02 from '../../img/playlist02.png'
+import playlist03 from '../../img/playlist03.png'
+import SkeletonLoading from '../skeleton/skeletonLoading';
+import { NavLink } from 'react-router-dom';
 
-export default function Sidebar({listId}) {
 
-  listId = [1,2,3]
-  
+
+function SidebarBlock() {
+              
   return (
-    <div className={styles.main__sidebar}>
-      <Personal />
-      <div className={styles.sidebar__block}>
-        <div className={styles.sidebar__list}>
-          <SidebarItem sidebarImage={playlist01} sidebarLink={listId[0]}/>
-          <SidebarItem sidebarImage={playlist02} sidebarLink={listId[1]}/>
-          <SidebarItem sidebarImage={playlist03} sidebarLink={listId[2]}/>
+    <div className={s.block}>
+        <div className={s.list}>
+            <div className={s.item}>
+           
+
+            
+            <NavLink className={s.btn_login} to="/selection/playlist/1">
+              <SkeletonLoading width={250} height={150}>
+                <img className={s.img} src={playlist01} alt=""/>
+                </SkeletonLoading>
+              </NavLink>
+            
+            </div>
+            <div className={s.item}>
+            <NavLink className={s.btn_login} to="/selection/playlist/2">
+              <SkeletonLoading width={250} height={150}>
+                <img className={s.img} src={playlist02} alt=""/>
+                </SkeletonLoading>
+              </NavLink>
+            </div>
+            <div className={s.item}>
+            <NavLink className={s.btn_login} to="/selection/playlist/3">
+              <SkeletonLoading width={250} height={150}>
+                <img className={s.img} src={playlist03} alt=""/>
+                </SkeletonLoading>
+              </NavLink>
+            </div>
         </div>
-      </div>
     </div>
+
   )
 }
+
+export default SidebarBlock;

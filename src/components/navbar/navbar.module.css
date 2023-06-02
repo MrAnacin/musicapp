@@ -1,0 +1,11 @@
+.NavBar_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.icon_svg {
+    height: 40px;
+    width: 40px;
+}

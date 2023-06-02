@@ -1,7 +1,7 @@
 .content {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    
 }
    
 .item {
@@ -28,7 +28,7 @@
     width: 51px;
     height: 51px;
     padding: 16px;
-    background: #313131;
+    background: var(--track_play__image);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color:var(--color-basic-text);
 }
     
 .title_span {
@@ -69,12 +69,18 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--color-basic-text);
     text-align: left;
 }
     
 .album {
     width: 245px;
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
     
 .album_link {

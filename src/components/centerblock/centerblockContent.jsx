@@ -1,15 +1,26 @@
-import Search from '../search/search'
-import Filter from '../filter-by/filter'
-import TrackList from '../tracklist/tracklist'
-import Track from '../tracklist/track'
+import React from 'react';
+import s from'./centerblock.module.css';
+import sprite from '../../img/icon/sprite.svg'
+import Playlist from '../playlist/playlist-mail';
 
-import styles from '../centerBlock/centerblock.module.css'
-import { Outlet } from 'react-router-dom'
-
-export default function CenterBlock() {
-  return (
-  
-      <Outlet />
-
-  )
+function CenterblockContent() {
+   return (
+    <div className={s.content}>
+       <div className={s.content_title}>
+          <div className={s.title_track} >Трек</div>
+          <div className={s.title_author}>ИСПОЛНИТЕЛЬ</div>
+          <div className={s.title_album}>АЛЬБОМ</div>
+          <div className={s.title_time}>
+            <svg className={s.time_svg} alt="time">
+              <use xlinkHref={`${sprite}#icon-watch`}></use>
+            </svg>
+          </div>
+      </div>
+      <div className={s.playlist}>   
+      <Playlist />
+        </div>
+    </div>
+    )
 }
+
+export default CenterblockContent;

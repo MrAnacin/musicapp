@@ -1,97 +1,70 @@
-import styles from '../filter-by/filter.module.css'
-import * as React from 'react'
-import Downshift from 'downshift'
-import { useSelect } from 'downshift'
-import { useState } from 'react'
-import { useThemeContext } from '../../contexts/theme'
+import React, {useState} from 'react';
+import s from './filter.module.css';
 
-export default function Filter({ options, optName }) {
-  const {
-    isOpen,
-    selectedItem,
-    getToggleButtonProps,
-    getLabelProps,
-    getMenuProps,
-    highlightedIndex,
-    getItemProps,
-  } = useSelect({ items: options })
+  const CategoryButton = ({category, isActive, onClick }) => {
+    return (
+      <button
+        className={`${s.filter__button} ${isActive ? s.active : ""}`}
+        onClick={onClick}
+      >
+        {category}
+      </button>
+    );
+  };
 
-  // const [activeState, setActiveState] = useState(false)
+  const Dropdown = ({ data }) => {
+    return (
+      <div className={s.dropdown}>
+        {data.map((item) => (
+          <div key={item} className={s.dropdown_item}>
+            {item}
+          </div>
+        ))}
+      </div>
+      
+    );
+  };
 
-  // const [selectedOption, setSelectedOption] = useState(null)
-  // const defaultOption = options[0]
-  const { currentTheme } = useThemeContext()
+const Appapp = () => {
+  const [activeCategory, setActiveCategory] = useState(null);
 
+  const categories = [
+    { name: "Исполнители", data: ["Исполнитель 1", "Исполнитель 2", "Исполнитель 3", "Исполнитель 4", "Исполнитель 5"] },
+    { name: "Год выпуска", data: ["2020", "2019", "2018"] },
+    { name: "Жанры", data: ["Жанр 1", "Жанр 2", "Жанр 3"] }
+  ];
+
+  const handleCategoryClick = (categoryName) => {
+    if (activeCategory === categoryName) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(categoryName);
+    }
+  };
+  
   return (
-    <div className={styles.options}>
-      <div
-        className={`${styles.filter__button} ${styles.button_author} ${
-          styles.btn_text
-        } ${isOpen ? styles.dropdwn_active : ''}`}
-        style={{
-          border: `1px solid ${currentTheme['--a-color']}`,
-          color: currentTheme['--a-color'],
-        }}
-        {...getToggleButtonProps()}
-      >
-        {selectedItem ?? optName}
-      </div>
-      <div className={styles.scrollabale_menu_padding}>
-        <ul
-          className={`${styles.filter__dropdown_content} ${
-            isOpen ? styles.srcollabale_menu : ''
-          }`}
-          style={{
-            backgroundColor: currentTheme['--page-background'],
-            boxShadow: currentTheme['--dropdwn-shadow'],
-            border: `${
-              isOpen
-                ? `30px solid ${currentTheme['--page-background']}`
-                : ''
-            }`,
-          }}
-          {...getMenuProps()}
-        >
-          {isOpen &&
-            options.map((item, index) => (
-              <li
-                className={styles.filter__dropdown_item}
-                
-                key={`${item}${index}`}
-                {...getItemProps({
-                  item,
-                  index,
-                })}
-              >
-                {item.value}
-              </li>
+      <div className={s.centerblock__filter}>
+          
+          <div className={s.filter}>
+      
+        <div className={s.filter__title}>Искать по:</div>
+          <div className={s.filter__category_btn} >
+                {categories.map((category) => (
+              <div key={category.name} className={s.category}>
+                <CategoryButton
+                  category={category.name}
+                  isActive={activeCategory === category.name}
+                  onClick={() => handleCategoryClick(category.name)}
+                />
+                {activeCategory === category.name && (
+                  <Dropdown data={category.data} />
+                )}
+              </div>
             ))}
-        </ul>
+          </div>
+        </div>   
       </div>
+  );
+};
 
-      {/* <ul
-        className={`filter__dropdown-content ${
-          isOpen ? 'srcollabale-menu' : ''
-        }`}
-        {...getMenuProps()}
-      >
-        {isOpen &&
-          options.map((item, index) => (
-            <li
-              className="filter__dropdown-item"
-              key={`${item}${index}`}
-              {...getItemProps({
-                item,
-                index,
-              })}
-            >
-              {item.value}
-            </li>
-          ))}
-      </ul> */}
-      {/* <div className="filter__button button-author _btn-text">исполнителю</div>
-      <div className="filter__button button-year _btn-text">году выпуска</div>
-      <div className="filter__button button-genre _btn-text">жанру</div> */}
-    </div>
-  )
-}
+export default Appapp;

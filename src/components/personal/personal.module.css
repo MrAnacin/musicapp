@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    padding: 25px 0 15px 0;
+    padding: 15px 0 15px 0;
 }
 
 .personal_name {
@@ -11,13 +11,20 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        color: #FFFFFF;
+        color: var(--color-basic-text);
         margin-right: 16px;
     }
 
 .avatar {
     width: 43px;
     height: 43px;
-    background-color: #313131;
+    background-color: var( --background-color);
     border-radius: 50%;
+}
+
+.icon_svg {
+    height: 40px;
+    width: 40px;
+    stroke: var(--color-basic-text); 
+    margin-right: 10px;   
 }
