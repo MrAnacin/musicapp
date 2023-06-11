@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'https://painassasin.online/user/'
 
+// Регистрация пользователя
 export const registerUser = async (username, email, password) => {
   try {
     const response = await axios.post(API_URL + 'signup/', {
@@ -15,6 +16,7 @@ export const registerUser = async (username, email, password) => {
   }
 };
 
+// Авторизация пользователя
 export const loginUser = async (email, password) => {
   try {
     const response = await axios.post(API_URL + 'login/', {
@@ -27,6 +29,7 @@ export const loginUser = async (email, password) => {
   }
 };
 
+// Получение токена
 export const getToken = async (refreshToken) => {
   try {
     const response = await axios.post(API_URL + 'token/', {
