@@ -1,21 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from "react-router-dom";
-import App from './App';
-import ThemeProvider from './providers/ThemeProvider' 
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import ReactDOM from 'react-dom';
 
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+
+import APP from './components/main.jsx';
+import './/css/global-style.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './css/variables.css';
+// import LoginForm from './pages/authorisation/login.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
+  <Router>
     <Provider store={store}>
-      <ThemeProvider>
-        <BrowserRouter>
-          <App />
-          </BrowserRouter>
-      </ThemeProvider>
+      <APP />
     </Provider>
-  
+  </Router>
 );
